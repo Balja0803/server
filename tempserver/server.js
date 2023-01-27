@@ -19,6 +19,8 @@ app.listen(port, () => {
   console.log(`server is starting in ${port} port`);
 });
 
+console.log("test");
+
 const data = [
   {
     description:
@@ -124,7 +126,7 @@ const data = [
       { Brightness: "400nits" },
     ],
     name: "Redmi Pad",
-    id: "",
+    id: "0146a55a",
     image:
       "https://i02.appmifile.com/84_operator_sg/13/09/2022/972447360327e0954a43fb47c2b84e68.png?f=webp",
     price: 439,
@@ -168,7 +170,7 @@ const data = [
     description: "Philips Hue smart LED bulbs",
     spec: [{ type: "A19" }, { wattage: "9.5W" }, { output: "800 Lumens" }],
     name: "LED bulbs",
-    id: "8bf7f5fc-92f3-11ed-a1eb-0242ac120002",
+    id: "8bf7f5fc",
     image:
       "https://cdn.vox-cdn.com/thumbor/twhweqrG_obtz7SoYGWKld_qgMM=/0x0:5250x3600/1400x1400/filters:focal(2625x1800:2626x1801)/cdn.vox-cdn.com/uploads/chorus_asset/file/22823524/philips_smart_led_bulb_package.jpg",
     price: 80,
@@ -186,7 +188,7 @@ const data = [
       { finishType: "HD6975/00" },
     ],
     name: "Philips Oven",
-    id: "8bf7f8d6-92f3-11ed-a1eb-0242ac120002",
+    id: "8bf7f8d6",
     image: "https://m.media-amazon.com/images/I/618O0ywM1SL._SX522_.jpg",
     price: 7920,
     stock: 164,
@@ -204,7 +206,7 @@ const data = [
       { accessories: "PN06 Battery-Free Pen" },
     ],
     name: "Sketch Pad",
-    id: "9afc4a40-92f7-11ed-a1eb-0242ac120002",
+    id: "9afc4a40",
     image: "https://m.media-amazon.com/images/I/61sC5JwNrpL._AC_SX679_.jpg",
     price: 215.99,
     stock: 15,
