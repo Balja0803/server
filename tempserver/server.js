@@ -11,8 +11,8 @@ app.get("/products", (request, response) => {
   response.json(data);
 });
 app.get("/users", (request, response) => {
-  console.log("GET products huselt orj irlee");
-  response.status(200).send("users");
+  console.log("GET users huselt orj irlee");
+  response.json(users);
 });
 
 app.listen(port, () => {
@@ -20,6 +20,69 @@ app.listen(port, () => {
 });
 
 console.log("test");
+
+const users = [
+  {
+    username: "john",
+    password: "qweqwe",
+    role: "admin",
+    id: "8a6e9552",
+  },
+  {
+    username: "barry",
+    password: "qweqwe",
+    role: "moderator",
+    id: "8a6e97fa",
+  },
+  {
+    username: "bruce",
+    password: "qweqwe",
+    role: "admin",
+    id: "8a6e9944",
+  },
+  {
+    username: "billy",
+    password: "qweqwe",
+    role: "moderator",
+    id: "8a6e9a70",
+  },
+  {
+    username: "huey",
+    password: "qweqwe",
+    role: "user",
+    id: "8a6e9ba6",
+  },
+  {
+    username: "joey",
+    password: "qweqwe",
+    role: "user",
+    id: "8a6e9cfa",
+  },
+  {
+    username: "human",
+    password: "qweqwe",
+    role: "user",
+    id: "8a6ea18c",
+  },
+  {
+    username: "hunter",
+    password: "qweqwe",
+    role: "user",
+    id: "8a6ea330",
+  },
+  {
+    username: "priest",
+    password: "qweqwe",
+    role: "user",
+    id: "8a6ea574",
+  },
+  {
+    username: "rogue",
+    password: "qweqwe",
+    role: "user",
+    id: "8a6ea740",
+  },
+];
 
 const data = [
   {
