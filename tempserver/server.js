@@ -1,10 +1,12 @@
 const { response } = require("express");
 const express = require("express");
 const cors = require("cors");
+const bodyParser = require("body-parser");
 
 const app = express();
 const port = 2020;
 app.use(cors());
+app.use(bodyParser.json());
 
 app.get("/products", (request, response) => {
   console.log("GET products huselt orj irlee");
@@ -13,6 +15,12 @@ app.get("/products", (request, response) => {
 app.get("/users", (request, response) => {
   console.log("GET users huselt orj irlee");
   response.json(users);
+});
+
+app.post("products/add", (request, response) => {
+  console.log("POST huselt orj irlee :", request.body);
+  const newData = { ...request.body };
+  data.push(newData);
 });
 
 app.listen(port, () => {
