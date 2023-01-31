@@ -1,0 +1,62 @@
+[
+  {
+    "username": "john",
+    "password": "qweqwe",
+    "role": "admin",
+    "id": "8a6e9552"
+  },
+  {
+    "username": "barry",
+    "password": "qweqwe",
+    "role": "moderator",
+    "id": "8a6e97fa"
+  },
+  {
+    "username": "bruce",
+    "password": "qweqwe",
+    "role": "admin",
+    "id": "8a6e9944"
+  },
+  {
+    "username": "billy",
+    "password": "qweqwe",
+    "role": "moderator",
+    "id": "8a6e9a70"
+  },
+  {
+    "username": "huey",
+    "password": "qweqwe",
+    "role": "user",
+    "id": "8a6e9ba6"
+  },
+  {
+    "username": "joey",
+    "password": "qweqwe",
+    "role": "user",
+    "id": "8a6e9cfa"
+  },
+  {
+    "username": "human",
+    "password": "qweqwe",
+    "role": "user",
+    "id": "8a6ea18c"
+  },
+  {
+    "username": "hunter",
+    "password": "qweqwe",
+    "role": "user",
+    "id": "8a6ea330"
+  },
+  {
+    "username": "priest",
+    "password": "qweqwe",
+    "role": "user",
+    "id": "8a6ea574"
+  },
+  {
+    "username": "rogue",
+    "password": "qweqwe",
+    "role": "user",
+    "id": "8a6ea740"
+  }
+]
