@@ -49,7 +49,7 @@ app.post("/products/add", (request, response) => {
   });
 });
 
-app.delete(`/products/delete/:id`, (request, response) => {
+app.delete("/products/delete/:id", (request, response) => {
   const { id } = request.params;
   console.log(id, " tai Delete huselt irlee");
   fs.readFile("./data/products.json", (err, data) => {
