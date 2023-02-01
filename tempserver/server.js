@@ -49,8 +49,26 @@ app.post("/products/add", (request, response) => {
   });
 });
 
+app.delete(`/products/delete/:id`, (request, response) => {
+  const { id } = request.params;
+  console.log(id, " tai Delete huselt irlee");
+  fs.readFile("./data/products.json", (err, data) => {
+    if (err) {
+      response.status(500).send({ message: err });
+    } else {
+      const datas = JSON.parse(data);
+      const leftDatas = datas.filter((data) => data.id !== id);
+      fs.writeFile("./data/products.json", JSON.stringify(leftDatas), (err) => {
+        if (err) {
+          response.status(500).send({ message: err });
+        } else {
+          response.status(200).send({ message: "successfully deleted" });
+        }
+      });
+    }
+  });
+});
+
 app.listen(port, () => {
   console.log(`server is starting in ${port} port`);
 });
-
-console.log("test");
