@@ -30,8 +30,27 @@ app.get("/users", (request, response) => {
   });
 });
 
+app.post("/users/add", (request, response) => {
+  console.log("users POST huselt irlee", request.body);
+  fs.readFile("./data/users.json", (err, data) => {
+    if (err) {
+      response.status(500).send({ message: err });
+    } else {
+      const users = JSON.parse(data);
+      users.push(request.body);
+      fs.writeFile("./data/users.json", JSON.stringify(users), (err) => {
+        if (err) {
+          response.status(500).send({ message: err });
+        } else {
+          response.status(200).send({ message: "user added successfully" });
+        }
+      });
+    }
+  });
+});
+
 app.post("/products/add", (request, response) => {
-  console.log("POST huselt orj irlee :", request.body);
+  console.log("product POST huselt orj irlee :", request.body);
   fs.readFile("./data/products.json", (err, data) => {
     if (err) {
       response.status(500).send({ message: err });
