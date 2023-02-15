@@ -19,13 +19,35 @@ app.get("/products", (request, response) => {
     }
   });
 });
-app.get("/users", (request, response) => {
-  console.log("GET users huselt orj irlee");
+// app.get("/users", (request, response) => {
+//   console.log("GET users huselt orj irlee");
+//   fs.readFile("./data/users.json", (err, data) => {
+//     if (err) {
+//       response.status(404).send({ message: err });
+//     } else {
+//       response.status(200).send(JSON.parse(data));
+//     }
+//   });
+// });
+
+app.post("/users/login", (request, response) => {
+  const { username } = request.params;
+  const { password } = request.params;
+  console.log("user LOGIN huselt orj irlee", request.body);
   fs.readFile("./data/users.json", (err, data) => {
     if (err) {
       response.status(404).send({ message: err });
     } else {
-      response.status(200).send(JSON.parse(data));
+      const users = JSON.parse(data);
+      const isValidUser = users.find(
+        (user) => user.username === username && user.password === password
+      );
+
+      if (!isValidUser) {
+        response.status(409).send({ message: "not valid!" });
+      } else {
+        response.status(200).send({ message: "valid!" });
+      }
     }
   });
 });
