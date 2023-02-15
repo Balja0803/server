@@ -57,9 +57,11 @@ app.post("/users/add", (request, response) => {
       const users = JSON.parse(data);
 
       const foundUser = users.find(
-        (user) => user.username === request.body.username
+        (user) =>
+          user.username === request.body.username ||
+          user.email === request.body.email
       );
-      console.log("huselt body username", request.body.username);
+
       if (!foundUser) {
         users.push(request.body);
         fs.writeFile("./data/users.json", JSON.stringify(users), (err) => {
@@ -67,10 +69,17 @@ app.post("/users/add", (request, response) => {
             response.status(500).send({ message: err });
           } else {
             response.status(200).send({ message: "user added successfully" });
+            console.log("user nemeglee");
           }
         });
       } else {
-        response.status(409).send({ message: "username already exists" });
+        response
+          .status(409)
+          .send({ message: "username or email already exists" });
+        console.log(
+          "Denied ! username or email already exist, username:",
+          request.body.username
+        );
       }
     }
   });
