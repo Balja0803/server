@@ -30,6 +30,24 @@ app.get("/users", (request, response) => {
   });
 });
 
+// app.post("/users/add", (request, response) => {
+//   console.log("users POST huselt irlee", request.body);
+//   fs.readFile("./data/users.json", (err, data) => {
+//     if (err) {
+//       response.status(500).send({ message: err });
+//     } else  {
+//       const users = JSON.parse(data);
+//       users.push(request.body);
+//       fs.writeFile("./data/users.json", JSON.stringify(users), (err) => {
+//         if (err) {
+//           response.status(500).send({ message: err });
+//         } else {
+//           response.status(200).send({ message: "user added successfully" });
+//         }
+//       });
+//     }
+//   });
+// });
 app.post("/users/add", (request, response) => {
   console.log("users POST huselt irlee", request.body);
   fs.readFile("./data/users.json", (err, data) => {
@@ -37,14 +55,23 @@ app.post("/users/add", (request, response) => {
       response.status(500).send({ message: err });
     } else {
       const users = JSON.parse(data);
-      users.push(request.body);
-      fs.writeFile("./data/users.json", JSON.stringify(users), (err) => {
-        if (err) {
-          response.status(500).send({ message: err });
-        } else {
-          response.status(200).send({ message: "user added successfully" });
-        }
-      });
+
+      const foundUser = users.find(
+        (user) => user.username === request.body.username
+      );
+      console.log("huselt body username", request.body.username);
+      if (!foundUser) {
+        users.push(request.body);
+        fs.writeFile("./data/users.json", JSON.stringify(users), (err) => {
+          if (err) {
+            response.status(500).send({ message: err });
+          } else {
+            response.status(200).send({ message: "user added successfully" });
+          }
+        });
+      } else {
+        response.status(409).send({ message: "username already exists" });
+      }
     }
   });
 });
