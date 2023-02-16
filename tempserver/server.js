@@ -31,22 +31,22 @@ app.get("/products", (request, response) => {
 // });
 
 app.post("/users/login", (request, response) => {
-  const { username } = request.params;
-  const { password } = request.params;
-  console.log("user LOGIN huselt orj irlee", request.body);
+  console.log("user LOGIN huselt orj irlee", request.body.username);
   fs.readFile("./data/users.json", (err, data) => {
     if (err) {
       response.status(404).send({ message: err });
     } else {
       const users = JSON.parse(data);
       const isValidUser = users.find(
-        (user) => user.username === username && user.password === password
+        (user) =>
+          user.username === request.body.username &&
+          user.password === request.body.password
       );
 
       if (!isValidUser) {
-        response.status(409).send({ message: "not valid!" });
+        response.status(403).send({ message: "not valid!" });
       } else {
-        response.status(200).send({ message: "valid!" });
+        response.status(200).send({ success: true });
       }
     }
   });
@@ -96,7 +96,7 @@ app.post("/users/add", (request, response) => {
         });
       } else {
         response
-          .status(409)
+          .status(403)
           .send({ message: "username or email already exists" });
         console.log(
           "Denied ! username or email already exist, username:",
