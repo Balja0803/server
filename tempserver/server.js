@@ -1,24 +1,27 @@
-const { response } = require("express");
 const express = require("express");
+const app = express();
+const port = 2020;
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const fs = require("fs");
+const prodRouter = require("./routes/products.js");
+const userRouter = require("./routes/user.js");
 
-const app = express();
-const port = 2020;
 app.use(cors());
 app.use(bodyParser.json());
+app.use("/products", prodRouter);
+app.use("/users", userRouter);
 
-app.get("/products", (request, response) => {
-  console.log("GET products huselt orj irlee");
-  fs.readFile("./data/products.json", (err, data) => {
-    if (err) {
-      response.status(404).send({ message: err });
-    } else {
-      response.status(200).send(data);
-    }
-  });
-});
+// app.get("/products", (request, response) => {
+//   console.log("GET products huselt orj irlee");
+//   fs.readFile("./data/products.json", (err, data) => {
+//     if (err) {
+//       response.status(404).send({ message: err });
+//     } else {
+//       response.status(200).send(data);
+//     }
+//   });
+// });
 // app.get("/users", (request, response) => {
 //   console.log("GET users huselt orj irlee");
 //   fs.readFile("./data/users.json", (err, data) => {
@@ -30,27 +33,27 @@ app.get("/products", (request, response) => {
 //   });
 // });
 
-app.post("/users/login", (request, response) => {
-  console.log("user LOGIN huselt orj irlee", request.body.username);
-  fs.readFile("./data/users.json", (err, data) => {
-    if (err) {
-      response.status(404).send({ message: err });
-    } else {
-      const users = JSON.parse(data);
-      const isValidUser = users.find(
-        (user) =>
-          user.username === request.body.username &&
-          user.password === request.body.password
-      );
+// app.post("/users/login", (request, response) => {
+//   console.log("user LOGIN huselt orj irlee", request.body.username);
+//   fs.readFile("./data/users.json", (err, data) => {
+//     if (err) {
+//       response.status(404).send({ message: err });
+//     } else {
+//       const users = JSON.parse(data);
+//       const isValidUser = users.find(
+//         (user) =>
+//           user.username === request.body.username &&
+//           user.password === request.body.password
+//       );
 
-      if (!isValidUser) {
-        response.status(403).send({ message: "not valid!" });
-      } else {
-        response.status(200).send({ success: true });
-      }
-    }
-  });
-});
+//       if (!isValidUser) {
+//         response.status(403).send({ message: "not valid!" });
+//       } else {
+//         response.status(200).send({ success: true });
+//       }
+//     }
+//   });
+// });
 
 // app.post("/users/add", (request, response) => {
 //   console.log("users POST huselt irlee", request.body);
